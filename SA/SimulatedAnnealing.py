@@ -15,7 +15,7 @@ class SA(OptimizationAlgorithm):
         cool_plan = self.cooling_plan
         start_temp = self.start_temp
         M = self.M
-        termination_condition = self.termination_condition
+        iter_num = self.iter_num
 
         #for i in range(1, M[]):
         #    if termination_conditions
