@@ -9,7 +9,7 @@ class SA(OptimizationAlgorithm):
         self.M = M
         self.termination_condition = termination_condition
 
-    def solve(self):
+    def solve(self, progressbar = None):
         solution = SolutionTSP.generate_random_solution()
         k = 0
         cool_plan = self.cooling_plan
@@ -17,11 +17,13 @@ class SA(OptimizationAlgorithm):
         M = self.M
         termination_condition = self.termination_condition
 
-        for i in range(1, M[]):
-            if termination_conditions
-            for j in range(1, M[i]):
-                pass
+        #for i in range(1, M[]):
+        #    if termination_conditions
+        #    for j in range(1, M[i]):
+        #        pass
             # generate N(rjesenje)
             # calc difference
             # if it is better solution, accept it
             # else do some calc
+
+        return None

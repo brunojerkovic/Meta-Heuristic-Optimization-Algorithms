@@ -11,5 +11,5 @@ class Problem(metaclass=abc.ABCMeta):
     problem_name: str = ''
 
     @abc.abstractmethod
-    def read_file(self):
+    def read_file(self, filename: str):
         pass

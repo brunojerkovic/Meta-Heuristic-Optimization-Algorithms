@@ -8,3 +8,4 @@ from dataclasses import dataclass
 )
 class Solution:
     problem_name: str = ''
+    fit: float = 0.
