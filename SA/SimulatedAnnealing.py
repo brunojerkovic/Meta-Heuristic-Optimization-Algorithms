@@ -1,6 +1,8 @@
 import numpy as np
 from OptimizationAlgorithm import OptimizationAlgorithm
 from Solution.SolutionTSP import SolutionTSP
+from Operators.Neighborhood import Neighborhood
+import random
 
 class SA(OptimizationAlgorithm):
     def __init__(self, cooling_plan, start_temp, M, iter_num):
@@ -10,20 +12,22 @@ class SA(OptimizationAlgorithm):
         self.iter_num = iter_num
 
     def solve(self, problem, progressbar = None):
-        solution = SolutionTSP(problem=problem)
-        k = 0
+        solution_curr = SolutionTSP(problem=problem)
         cool_plan = self.cooling_plan
-        start_temp = self.start_temp
+        temp = self.start_temp
         M = self.M
         iter_num = self.iter_num
+        alpha, beta = 1., 1.
 
-        #for i in range(1, M[]):
-        #    if termination_conditions
-        #    for j in range(1, M[i]):
-        #        pass
-            # generate N(rjesenje)
-            # calc difference
-            # if it is better solution, accept it
-            # else do some calc
+        # Algorithm
+        for k in range(1, iter_num):
+            temp = cool_plan(temp, k, alpha)
+            for _ in range(M):
+                neighbor = Neighborhood.generate_neighbor(solution_curr)
+                delta = neighbor.fit - solution_curr.fit
+                if delta <= 0: # Accepts if it is equal just to add diversity
+                    solution_curr = neighbor
+                else:
+                    solution_curr = neighbor if random.random() < np.exp(-delta/temp) else solution_curr
 
         return None
