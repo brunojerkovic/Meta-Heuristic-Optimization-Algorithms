@@ -85,7 +85,7 @@ class TestingGUI:
         self.problem = ProblemTSP()
         self.problem.read_file(filename)
 
-    def start_button_clicked(self):
+    def start_button_clicked(self, event):
         # Start timer and restart progress bar
         self.time_passed = 0.
         start_time = time.time()
@@ -93,19 +93,22 @@ class TestingGUI:
 
         # Tell algorithm's GUI to solve the problem with its parameters
         self.score = self.algorithm_gui.run_algorithm(self.progressbar)
-        self.score_str.set(f'Time: {round(self.score, 2)}')
+        self.score_str.set(f'Fit: {round(self.score, 2)}')
 
         # End timer
-        self.time_passed = time.time() - self.start_time
+        self.time_passed = time.time() - start_time
+        self.time_str.set(f'Time: {round(self.time_passed, 2)}')
 
         # Save the results:
-        self.algorithm_gui.save_results()
+        self.algorithm_gui.save_results(self.score)
 
     def get_algorithm_gui(self):
         algorithm_str = self.algorithm_choice.get()
 
         if algorithm_str == 'Simulated Annealing':
             from SA.GUI import GUI # TODO: samo importaj odredjeni GUI ovisno o choiceu korisnika
+        elif algorithm_str == 'Particle Swarm Optimization':
+            from PSO.GUI import GUI
         else:
             GUI = None
 

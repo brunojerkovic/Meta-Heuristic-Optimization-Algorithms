@@ -6,8 +6,8 @@ class CoolingPlan:
         return T0 - k * beta
 
     @staticmethod
-    def geom_cooling_plan(T0, k, alpha):
-        return T0 * (alpha ** k)
+    def geom_cooling_plan(T0, k, beta):
+        return T0 * (beta ** k)
 
     @staticmethod
     def log_cooling_plan(T0, k):

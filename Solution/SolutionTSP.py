@@ -1,6 +1,4 @@
-from Problem.Problem import Problem
 from Solution.Solution import Solution
-import settings
 from Problem.ProblemTSP import ProblemTSP
 import numpy as np
 
@@ -11,6 +9,7 @@ class SolutionTSP(Solution):
         self.problem = problem
         self.cities = np.arange(problem.map_dimension)
         self.map_dimension = problem.map_dimension
+        self.evaluate() # Evaluate the randomly generated solution
 
     @staticmethod
     def euclidian_distance(x1, x2, y1, y2):
@@ -25,7 +24,7 @@ class SolutionTSP(Solution):
         end_city = self.cities[-1]
         distance += SolutionTSP.euclidian_distance(self.problem.cities[end_city][0], self.problem.cities[start_city][0], self.problem.cities[end_city][1], self.problem.cities[start_city][1])
 
-        return distance
+        self.fit = -1 * distance
 
     def __str__(self):
-        return f'Cities: {self.cities}\n Map dimension: {self.map_dimension}\n Fit: {super.fit}'
+        return f'Cities: {self.cities}\n Map dimension: {self.map_dimension}\n Fit: {self.fit}'

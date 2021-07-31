@@ -1,24 +1,37 @@
 import numpy as np
 from OptimizationAlgorithm import OptimizationAlgorithm
 from Solution.SolutionTSP import SolutionTSP
-from SA.Operators.Neighborhood import Neighborhood
 import random
 
-class SA(OptimizationAlgorithm):
-    def __init__(self, cooling_plan, start_temp, M, iter_num, beta):
-        self.cooling_plan = cooling_plan
-        self.start_temp = start_temp
-        self.M = M
-        self.iter_num = iter_num
-        self.beta = beta
+class ParticleSwarmOptimization(OptimizationAlgorithm):
+    def __init__(self, pop_size, n_dim, max_iter):
+        self.pop_size = pop_size
+        self.n_dim = n_dim
+        self.max_iter = max_iter
 
     def solve(self, problem, progressbar = None):
         solution = SolutionTSP(problem=problem)
-        cool_plan = self.cooling_plan
-        temp = self.start_temp
-        M = self.M
-        iter_num = self.iter_num
-        beta = self.beta
+        pop_size = self.pop_size
+        n_dim = self.n_dim
+        max_iter = self.max_iter
+
+
+        # Algorithm
+        for i in range(pop_size):
+            for d in range(n_dim):
+                position[i][d] = random.randint(position_min[d], position_max[d])
+                velocity[i][d] = random.randint(velocity_min[d], velocity_max[d])
+
+
+        for i in range(pop_size):
+            pop[i].evaluate()
+
+        # Does the particle have its own better solution?
+        for i in range(pop_size):
+            if pop[i].fit > p_best[i]:
+                pbest[i] = pop[i] # Copy position and fit
+
+        # Is there globally a better solution now?
 
         # Algorithm
         for k in range(1, iter_num):
