@@ -23,15 +23,16 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
                 velocity[i][d] = random.randint(velocity_min[d], velocity_max[d])
 
 
-        for i in range(pop_size):
-            pop[i].evaluate()
+        for i in range(max_iter):
+            for i in range(pop_size):
+                pop[i].evaluate()
 
-        # Does the particle have its own better solution?
-        for i in range(pop_size):
-            if pop[i].fit > p_best[i]:
-                pbest[i] = pop[i] # Copy position and fit
+            # Does the particle have its own better solution?
+            for i in range(pop_size):
+                if pop[i].fit > p_best[i]:
+                    pbest[i] = pop[i] # Copy position and fit
 
-        # Is there globally a better solution now?
+            # Is there globally a better solution now?
 
         # Algorithm
         for k in range(1, iter_num):
