@@ -19,3 +19,14 @@ class ProblemTSP(Problem):
                 elif line[0].isdigit():
                     self.cities[cnt] = np.array([float(line.split()[0]), float(line.split()[1])])
                     cnt += 1
+
+    def get_distances(self):
+        map = self.cities
+        if not hasattr(self, 'distances'):
+            self.distances = np.array([[DistanceFunctions.euclidian_distance(map_city1, map_city2) for map_city1 in map] for map_city2 in map])
+        return self.distances
+
+class DistanceFunctions:
+    @staticmethod
+    def euclidian_distance(city1, city2):
+        return ((city1[0] - city2[0]) ** 2 + (city1[1] - city2[1]) ** 2) ** 0.5

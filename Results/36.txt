@@ -1,0 +1,13 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm Type: =Simple Immunological Algorithm
+_Hypermutation: =Static mutation
+_Hypermutation Constant=2.0
+_Population Size=100
+_Iteration Number: =100
+_Cloning Function: =Proportional cloning operator
+_Duplication Size: =3
+_Fit: =Cities: [28 26 15 10 14  0  2  5  1 13 20 12 30 32 37 33 31 35 34 29  8 23 36 16
+ 19 22  3  4 21  7  6  9 11 17 18 27 24 25]
+ Map dimension: 38
+ Fit: -9742.470043308283
+_

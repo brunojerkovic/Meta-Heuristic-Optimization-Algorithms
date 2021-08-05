@@ -5,9 +5,11 @@ import numpy as np
 
 class SolutionTSP(Solution):
 
-    def __init__(self, problem: ProblemTSP):
+    def __init__(self, problem: ProblemTSP, permute_cities=False):
         self.problem = problem
         self.cities = np.arange(problem.map_dimension)
+        if permute_cities:
+            self.cities = np.random.permutation(self.cities)
         self.map_dimension = problem.map_dimension
         self.evaluate() # Evaluate the randomly generated solution
 
@@ -28,3 +30,6 @@ class SolutionTSP(Solution):
 
     def __str__(self):
         return f'Cities: {self.cities}\n Map dimension: {self.map_dimension}\n Fit: {self.fit}'
+
+    def add_attribute(self, attr):
+        setattr(self, attr, attr)

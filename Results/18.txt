@@ -1,0 +1,11 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simulated Annealing
+_Population size: =100
+_Max velocity: =30
+_Min velocity: =1
+_Iteration number: =100
+_Fit: =Cities: [34  8  5  0  3  2  1 10 22 14  9 30 27 36 37 35 15 26 25 20 24 19 12 13
+ 29 28 31 21 32  4 11  6 16 17 23 18  7 33]
+ Map dimension: 38
+ Fit: -12126.616000925083
+_

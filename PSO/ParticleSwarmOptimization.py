@@ -2,48 +2,70 @@ import numpy as np
 from OptimizationAlgorithm import OptimizationAlgorithm
 from Solution.SolutionTSP import SolutionTSP
 import random
+from PSO.Operators.VelocityUpdate import VelocityUpdate
+from PSO.Operators.UpdatePosition import UpdatePosition
+
 
 class ParticleSwarmOptimization(OptimizationAlgorithm):
-    def __init__(self, pop_size, n_dim, max_iter):
+    def __init__(self, pop_size, min_vel, max_vel, iter_num, velocity_update_fn):
         self.pop_size = pop_size
-        self.n_dim = n_dim
-        self.max_iter = max_iter
+        self.min_vel = min_vel
+        self.max_vel = max_vel
+        self.iter_num = iter_num
+        self.velocity_update_fn = velocity_update_fn
 
-    def solve(self, problem, progressbar = None):
-        solution = SolutionTSP(problem=problem)
+    def solve(self, problem):
         pop_size = self.pop_size
-        n_dim = self.n_dim
-        max_iter = self.max_iter
+        min_vel = self.min_vel
+        max_vel = self.max_vel
+        iter_num = self.iter_num
+        velocity_update_fun = self.velocity_update_fn
 
+        # Instantiate globally best solution
+        g_best_fit = -1 * np.inf
+        g_best_position = []
 
-        # Algorithm
-        for i in range(pop_size):
-            for d in range(n_dim):
-                position[i][d] = random.randint(position_min[d], position_max[d])
-                velocity[i][d] = random.randint(velocity_min[d], velocity_max[d])
+        # Instantiate solutions
+        solutions = [SolutionTSP(problem=problem, permute_cities=True) for _ in range(pop_size)]
 
+        # Add properties to the Solution class for position and velocity
+        for solution in solutions:
+            solution.add_attribute('velocity')
+            solution.add_attribute('p_best_fit')
+            solution.p_best_fit = -1 * np.inf
+            solution.add_attribute('p_best_position')
 
-        for i in range(max_iter):
-            for i in range(pop_size):
-                pop[i].evaluate()
+        # Instantiate velocity
+        for solution in solutions:
+            solution.velocity = random.randint(min_vel, max_vel)
 
-            # Does the particle have its own better solution?
-            for i in range(pop_size):
-                if pop[i].fit > p_best[i]:
-                    pbest[i] = pop[i] # Copy position and fit
+        for _ in range(iter_num):
+            # Evaluate population
+            for solution in solutions:
+                solution.evaluate()
 
-            # Is there globally a better solution now?
+            # Update p_best for all solutions in population
+            for solution in solutions:
+                if solution.fit > solution.p_best_fit:
+                    solution.p_best_fit = solution.fit
+                    solution.p_best_cities = solution.cities
 
-        # Algorithm
-        for k in range(1, iter_num):
-            temp = cool_plan(temp, k, beta)
-            for _ in range(M):
-                neighbor = Neighborhood.insertion(solution=solution, problem=problem)
-                delta = neighbor.fit - solution.fit
-                if delta <= 0: # Accepts if it is equal just to add diversity
-                    solution = neighbor
-                else:
-                    temp = 0.00001 if temp == 0. else round(temp, 5) # Correct if temp == 0
-                    solution = neighbor if random.random() < np.exp(-delta/temp) else solution
+            # Update g_best for all solutions in population
+            for solution in solutions:
+                if solution.fit > g_best_fit:
+                    g_best_fit = solution.fit
+                    g_best_position = solution.cities
 
-        return [solution]
+            # Update position and velocity of each solution
+            for solution in solutions:
+                velocity = VelocityUpdate.stable_velocity_update(solution.velocity, solution.cities, solution.p_best_cities, g_best_position)
+                velocity = int(min(velocity))
+
+                solution.cities = UpdatePosition.swap_operator(velocity, solution.cities)
+
+        # Create the solution from the globally best one
+        best_solution = SolutionTSP(problem=problem)
+        best_solution.cities = g_best_position
+        best_solution.evaluate()
+
+        return [best_solution]

@@ -1,0 +1,13 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simple Immunological Algorithm
+_Local Search Function: =Perform nearest neighbor
+_Pheromone Deposition Function: =Elitist ant system update
+_Alpha Constant: =1.
+_Beta Constant: =2.5
+_Pheromone Evaporation Coefficient: =0.5
+_Iteration Number: =100
+_Population Size: =100
+_Fit: =Cities: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
+ Map dimension: 38
+ Fit: -3284.1977264815055
+_

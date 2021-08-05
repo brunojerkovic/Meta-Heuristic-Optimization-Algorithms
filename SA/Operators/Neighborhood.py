@@ -1,8 +1,6 @@
 import random
 from functools import wraps
-
 import numpy as np
-
 from Solution.SolutionTSP import SolutionTSP
 
 class NeighborhoodDecorators:

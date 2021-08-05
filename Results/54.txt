@@ -1,0 +1,11 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Particle Swarm Optimization
+_Population size: =100
+_Max velocity: =30
+_Min velocity: =1
+_Iteration number: =100
+_Fit: =Cities: [22 24 13 16  0  5 11  9  7 26 33 37 34 35 36 14 12 15 32 30 29 28 21 18
+  8  6 31 27 20 25  4 10  3  2 19 23 17  1]
+ Map dimension: 38
+ Fit: -10901.635232867828
+_

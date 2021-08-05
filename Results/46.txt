@@ -1,0 +1,20 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simple Immunological Algorithm
+_Selection Function: =Simple pair selection
+_Mutation Function=Random de mutation
+_Crossover Function=Exponential crossover
+_TSP Constraint Solver: =Simple constraint solver
+_Population Size: =100
+_Iteration Number: =100
+_Crossover Constant: =Exponential crossover
+_Linear Combination Number: =100
+_Fit: =Cities: [ 1182504028  -803568914 -2066156098   745289415   208000323   641707311
+  2130267198  2136282277   172300407  1667021080        8411        -717
+  2128345006  1812200413  -369359413  -839108500  2058575608          15
+   495166635          32    88041230  -580770988  -504472093  -525668096
+   329568308      -22949        4203  -467683679  1751430616   820493174
+   848839810   956790550  1064607927   929991976  -505782410   670988592
+  1610242989           7]
+ Map dimension: 38
+ Fit: -3284.1977264815055
+_

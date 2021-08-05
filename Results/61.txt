@@ -1,0 +1,8 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simulated Annealing
+_Cooling Plan: =Geom cooling plan
+_Starting temperature=100
+_M=2
+_Iteration number: =100
+_Fit: =-26541.87337365669
+_

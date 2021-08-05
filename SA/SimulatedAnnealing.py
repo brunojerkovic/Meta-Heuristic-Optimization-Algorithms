@@ -4,7 +4,7 @@ from Solution.SolutionTSP import SolutionTSP
 from SA.Operators.Neighborhood import Neighborhood
 import random
 
-class SA(OptimizationAlgorithm):
+class SimulatedAnnealing(OptimizationAlgorithm):
     def __init__(self, cooling_plan, start_temp, M, iter_num, beta):
         self.cooling_plan = cooling_plan
         self.start_temp = start_temp
@@ -12,7 +12,7 @@ class SA(OptimizationAlgorithm):
         self.iter_num = iter_num
         self.beta = beta
 
-    def solve(self, problem, progressbar = None):
+    def solve(self, problem):
         solution = SolutionTSP(problem=problem)
         cool_plan = self.cooling_plan
         temp = self.start_temp

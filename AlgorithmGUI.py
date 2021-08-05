@@ -1,8 +1,9 @@
 import abc
 
+# Base class for the GUI of the specific algorithm
 class AlgorithmGUI(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def run_algorithm(self, progressbar):
+    def run_algorithm(self):
         pass
 
     @staticmethod

@@ -1,0 +1,11 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simple Immunological Algorithm
+_Hypermutation: =Inversely proportional mutation
+_Hypermutation Constant=2.0
+_Population Size=100
+_Iteration number: =100
+_Fit: =Cities: [ 7 12 11  1 14 17  2 35 31  3  5 13  9 15 16  6 29 37 36 20 28 33 21 23
+ 32 18 24 30  4 19 27 34 25 26  8  0 10 22]
+ Map dimension: 38
+ Fit: -14748.03366810537
+_

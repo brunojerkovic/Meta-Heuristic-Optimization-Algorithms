@@ -1,0 +1,8 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simulated Annealing
+_Population size: =100
+_Max velocity: =30
+_Min velocity: =1
+_Iteration number: =100
+_Fit: =-11952.890481362552
+_

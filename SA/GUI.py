@@ -1,6 +1,6 @@
 import tkinter as tk
 import os
-from SA.SimulatedAnnealing import SA
+from SA.SimulatedAnnealing import SimulatedAnnealing
 from AlgorithmGUI import AlgorithmGUI
 from SA.Operators.CoolingPlan import CoolingPlan
 
@@ -48,15 +48,15 @@ class GUI(AlgorithmGUI):
         self.beta_entry.grid(row=4, column=1)
         # endregion
 
-    def run_algorithm(self, progressbar, save=True):
+    def run_algorithm(self, save=True):
         cooling_plan_fn = eval('CoolingPlan.' + GUI.preprocessing_option_menu_for_enum(self.cooling_plan_choice.get()))
         start_temp = float(self.start_temp_entry.get())
         M = int(self.M_entry.get())
         iter_num = int(self.iter_num_entry.get())
         beta = float(self.beta_entry.get())
 
-        sa = SA(cooling_plan=cooling_plan_fn, start_temp=start_temp, M=M, iter_num=iter_num, beta=beta)
-        solutions = sa.solve(self.problem, progressbar=progressbar)
+        sa = SimulatedAnnealing(cooling_plan=cooling_plan_fn, start_temp=start_temp, M=M, iter_num=iter_num, beta=beta)
+        solutions = sa.solve(self.problem)
 
         if save:
             self.save_results(solutions[0])

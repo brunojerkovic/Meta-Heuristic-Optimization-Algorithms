@@ -1,0 +1,11 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simulated Annealing
+_Cooling Plan: =Geom cooling plan
+_Starting temperature=100
+_M=2
+_Iteration number: =100
+_Fit: =Cities: [36 19  5 22  6 33  4 29 15 20  7 26  8 24  9 28  1 27  2 23  3 34 18 16
+ 30 10 32 12 25 14 35 17 21 11 31 13 37  0]
+ Map dimension: 38
+ Fit: -26541.87337365669
+_

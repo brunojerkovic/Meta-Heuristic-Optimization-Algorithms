@@ -51,10 +51,6 @@ class TestingGUI:
         self.start_button.bind('<Button-1>', self.start_button_clicked)
         self.start_button.grid(row=3, column=0, columnspan=2)
 
-        # Progressbar
-        self.progressbar = ttk.Progressbar(self.main_menu_frame, orient=tk.HORIZONTAL, length=100, mode='determinate')
-        self.progressbar.grid(row=4, column=0, columnspan=2)
-
         # Time passed
         self.time_str = tk.StringVar(self.main_menu_frame)
         self.time_str.set(f'Time: {round(self.time_passed, 2)}')
@@ -73,26 +69,25 @@ class TestingGUI:
 
     def load_algorithm(self, *args):
         # Set new GUI and change the 'problem' variable
-        print("Load algorithm")
+        #print("Load algorithm")
         AlgorithmGUI = self.get_algorithm_gui()
         if AlgorithmGUI is not None:
             self.load_problem()
             self.algorithm_gui = AlgorithmGUI(self.problem, self.master_frame, self.dataset_path_entry.get(), position=(7, 0))
 
     def load_problem(self, *args):
-        print("Load Problem")
+        #print("Load Problem")
         filename = self.dataset_path_entry.get().replace("\\", "/")
         self.problem = ProblemTSP()
         self.problem.read_file(filename)
 
     def start_button_clicked(self, event):
-        # Start timer and restart progress bar
+        # Start timer
         self.time_passed = 0.
         start_time = time.time()
-        self.progressbar['value'] = 0.
 
         # Tell algorithm's GUI to solve the problem with its parameters
-        self.score = self.algorithm_gui.run_algorithm(self.progressbar)
+        self.score = self.algorithm_gui.run_algorithm()
         self.score_str.set(f'Fit: {round(self.score, 2)}')
 
         # End timer
@@ -103,12 +98,25 @@ class TestingGUI:
         self.algorithm_gui.save_results(self.score)
 
     def get_algorithm_gui(self):
+        # Delete the frame of the previously selected algorithm
+        if hasattr(self, 'algorithm_gui'):
+            self.algorithm_gui.hyperparameters_frame.destroy()
+
+        # Get the currently chosen algorithm
         algorithm_str = self.algorithm_choice.get()
 
         if algorithm_str == 'Simulated Annealing':
             from SA.GUI import GUI # TODO: samo importaj odredjeni GUI ovisno o choiceu korisnika
         elif algorithm_str == 'Particle Swarm Optimization':
             from PSO.GUI import GUI
+        elif algorithm_str == 'Simple Immunological Algorithm':
+            from SIA.GUI import GUI
+        elif algorithm_str == 'ClonAlg':
+            from CLONALG.GUI import GUI
+        elif algorithm_str == 'Differential Evolution':
+            from DE.GUI import GUI
+        elif algorithm_str == 'Ant System Algorithm':
+            from ASA.GUI import GUI
         else:
             GUI = None
 

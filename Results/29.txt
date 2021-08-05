@@ -1,0 +1,8 @@
+Filename: =Datasets/dj38.tsp
+_Algorithm type: =Simple Immunological Algorithm
+_Hypermutation: =Inversely proportional mutation
+_Hypermutation Constant=2.0
+_Population Size=100
+_Iteration number: =100
+_Fit: =-14923.882840307135
+_
